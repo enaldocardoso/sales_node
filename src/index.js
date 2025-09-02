@@ -3,13 +3,17 @@ import { config } from './config/env.config.js';
 import clientRoutes from './routes/client.routes.js';
 import productRoutes from './routes/product.routes.js';
 import orderRoutes from './routes/order.routes.js';
+import authRoutes from './routes/auth.routes.js';
 
 const app = express();
 const PORT = config.PORT;
 
 app.use(express.json());
 
-// Routes
+// Rotas públicas
+app.use('/api', authRoutes);
+
+// Rotas protegidas
 app.use('/api', clientRoutes);
 app.use('/api', productRoutes);
 app.use('/api', orderRoutes);
