@@ -1,6 +1,42 @@
 import { query } from '../config/database.js';
 
 export class ClientModel {
+
+  static async create(clientData) {
+    const {
+      cpf, nome, telefone, email, cep,
+      municipio, estado, endereco, numero, complemento
+    } = clientData;
+
+    // Verificar se CPF já existe
+    const existingClient = await query(
+      'SELECT id FROM clients WHERE cpf = $1',
+      [cpf]
+    );
+
+    if (existingClient.rows.length > 0) {
+      throw new Error('CPF já cadastrado');
+    }
+
+    // Verificar se e-mail já existe
+    const existingEmail = await query(
+      'SELECT id FROM clients WHERE email = $1',
+      [email]
+    );
+
+    if (existingEmail.rows.length > 0) {
+      throw new Error('E-mail já cadastrado');
+    }
+
+    const result = await query(
+      `INSERT INTO clients (cpf, nome, telefone, email, cep, municipio, estado, endereco, numero, complemento)
+       VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10) RETURNING id`,
+      [cpf, nome, telefone, email, cep, municipio, estado, endereco, numero, complemento]
+    );
+
+    return result.rows[0];
+  }
+
   static async create(clientData) {
     const {
       cpf, nome, telefone, email, cep,

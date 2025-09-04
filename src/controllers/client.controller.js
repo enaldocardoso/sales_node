@@ -1,7 +1,9 @@
 import { ClientModel } from '../models/client.model.js';
 
 export class ClientController {
+
   static async create(req, res) {
+    
     try {
       const client = await ClientModel.create(req.body);
       res.status(201).json({
@@ -10,6 +12,14 @@ export class ClientController {
         id: client.id
       });
     } catch (error) {
+      // Verificar se é erro de duplicidade
+      if (error.message.includes('já cadastrado')) {
+        return res.status(409).json({
+          status: 'error',
+          message: error.message
+        });
+      }
+
       res.status(400).json({
         status: 'error',
         message: error.message
