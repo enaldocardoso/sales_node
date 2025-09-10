@@ -1,0 +1,33 @@
+.swagger-ui .info hgroup.main h2 {
+  color: #2c3e50;
+  font-size: 24px;
+}
+
+.swagger-ui .btn.authorize {
+  background-color: #3498db;
+  border-color: #3498db;
+}
+
+.swagger-ui .btn.execute {
+  background-color: #27ae60;
+}
+
+.swagger-ui .opblock.opblock-post {
+  border-color: #49cc90;
+  background: rgba(73,204,144,.1);
+}
+
+.swagger-ui .opblock.opblock-get {
+  border-color: #61affe;
+  background: rgba(97,175,254,.1);
+}
+
+.swagger-ui .opblock.opblock-put {
+  border-color: #fca130;
+  background: rgba(252,161,48,.1);
+}
+
+.swagger-ui .opblock.opblock-delete {
+  border-color: #f93e3e;
+  background: rgba(249,62,62,.1);
+}
