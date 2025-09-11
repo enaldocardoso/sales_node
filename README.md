@@ -8,6 +8,7 @@ Express.js - Framework web
 PostgreSQL - Banco de dados relacional
 Docker - Containerização
 JWT - Autenticação
+Swagger/OpenAPI - Documentação interativa
 Jest - Testes automatizados
 Supertest - Testes de integração
 
@@ -20,8 +21,61 @@ Supertest - Testes de integração
 ✅ Controle de estoque automático
 ✅ Validações de dados (CPF, Telefone, CEP, Email)
 ✅ Paginação em todas as listagens
+✅ Documentação interativa com Swagger
 ✅ Testes unitários e de integração
 ✅ Documentação completa da API
+
+📚 Documentação Interativa
+
+A API possui documentação completa e interativa através do Swagger UI:
+
+🌐 Acessar Documentação
+
+http://localhost:3000/api/docs
+
+🎯 Funcionalidades do Swagger UI
+📖 Documentação Completa: Todos os endpoints documentados
+🔄 Testes Interativos: Execute requests diretamente na interface
+🔐 Autenticação Integrada: Configure tokens JWT facilmente
+📋 Exemplos Práticos: Modelos de requests e responses
+🔍 Busca e Filtro: Encontre endpoints rapidamente
+📱 Interface Responsiva: Acessível em qualquer dispositivo
+
+🔐 Como Usar a Documentação
+
+Acesse a documentação: http://localhost:3000/api/docs
+
+Obtenha um token:
+Vá na seção Auth → POST /auth/login
+Clique em "Try it out"
+
+Preencha os dados:
+
+json
+{
+  "email": "admin@email.com",
+  "password": "senha123"
+}
+
+Execute e copie o token retornado
+
+Configure autenticação:
+
+Clique no botão "Authorize" 🔐 no topo
+Cole o token: Bearer seu_token_aqui
+Clique em "Authorize"
+
+Teste os endpoints:
+
+Agora você pode testar qualquer endpoint protegido
+Use "Try it out" para preencher dados e executar
+
+📊 Estrutura da Documentação:
+
+🔐 Auth: Autenticação e registro de usuários
+👥 Clients: Gerenciamento completo de clientes
+📦 Products: Cadastro e gestão de produtos
+🛒 Orders: Processamento de pedidos de venda
 
 🏗️ Estrutura do Projeto
 
@@ -35,13 +89,16 @@ project/
 ├── scripts/
 │   ├── init-db.sql
 │   └── test-init.sql
+├── public/
+│   └── swagger-custom.css
 ├── src/
 │   ├── index.js
 │   ├── config/
 │   │   ├── database.js
 │   │   ├── env.config.js
 │   │   ├── auth.config.js
-│   │   └── test.config.js
+│   │   ├── test.config.js
+│	  │	  └── swagger.config.js
 │   ├── controllers/
 │   │   ├── auth.controller.js
 │   │   ├── client.controller.js
@@ -56,7 +113,8 @@ project/
 │   │   ├── auth.routes.js
 │   │   ├── client.routes.js
 │   │   ├── product.routes.js
-│   │   └── order.routes.js
+│   │   ├── order.routes.js
+│   │   └── docs.routes.js
 │   ├── middlewares/
 │   │   ├── auth.middleware.js
 │   │   └── validation.middleware.js
